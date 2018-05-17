@@ -9,6 +9,7 @@ using namespace std;
 
 class FSEGTIONcursesRenderer: public FSEGTRenderer {
 
+public:
 	FSEGTIONcursesRenderer();
 
 	virtual void initialize();
