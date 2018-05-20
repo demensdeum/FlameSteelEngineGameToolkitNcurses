@@ -4,7 +4,9 @@
 
 void FSEGTIONcursesSystem::initialize(shared_ptr<FSEGTIOSystemParams> params) {
 
-	initscr();
+	//initscr();
+	//printw("NCurses IO System initialized");
+	//refresh();
 
 	renderer = make_shared<FSEGTIONcursesRenderer>();
 	renderer->initialize();
