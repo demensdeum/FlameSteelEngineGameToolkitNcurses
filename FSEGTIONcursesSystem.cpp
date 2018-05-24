@@ -4,9 +4,10 @@
 
 void FSEGTIONcursesSystem::initialize(shared_ptr<FSEGTIOSystemParams> params) {
 
-	//initscr();
-	//printw("NCurses IO System initialized");
-	//refresh();
+	initscr();
+	keypad(stdscr, true);
+	printw("NCurses IO System initialized");
+	refresh();
 
 	renderer = make_shared<FSEGTIONcursesRenderer>();
 	renderer->initialize();
@@ -16,10 +17,19 @@ void FSEGTIONcursesSystem::initialize(shared_ptr<FSEGTIOSystemParams> params) {
 }
     
 void FSEGTIONcursesSystem::objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object) {
+
+    renderer->objectsContextObjectAdded(context, object);
+
 }
 
 void FSEGTIONcursesSystem::objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object) {
+    
+    renderer->objectsContextObjectUpdate(context, object);
+    
 }
 
 void FSEGTIONcursesSystem::objectsContextAllObjectsRemoved(shared_ptr<FSEGTObjectsContext> context) {
+    
+    renderer->objectsContextAllObjectsRemoved(context);
+
 }

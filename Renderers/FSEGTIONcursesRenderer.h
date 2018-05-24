@@ -20,6 +20,9 @@ public:
  	virtual void objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object);
 	virtual void objectsContextAllObjectsRemoved(shared_ptr<FSEGTObjectsContext> context);	
 
+private:
+	shared_ptr<FSCObject> camera;
+
 };
 
 #endif
