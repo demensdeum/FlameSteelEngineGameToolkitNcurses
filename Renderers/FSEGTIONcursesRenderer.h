@@ -2,10 +2,11 @@
 #define FSEGTIONCURSESRENDERER_DEFINED 1
 
 #include <FlameSteelEngineGameToolkit/IO/Renderers/FSEGTRenderer.h>
-
+#include <FlameSteelEngineGameToolkit/Data/ObjectsMap/ObjectsMap.h>
 #include <memory>
 
 using namespace std;
+using namespace FlameSteelEngine::GameToolkit;
 
 class FSEGTIONcursesRenderer: public FSEGTRenderer {
 
@@ -22,6 +23,8 @@ public:
 
 private:
 	shared_ptr<FSCObject> camera;
+	shared_ptr<ObjectsMap> objectsMap;
+	
 
 };
 

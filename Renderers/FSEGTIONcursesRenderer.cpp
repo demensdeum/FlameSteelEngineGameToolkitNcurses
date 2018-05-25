@@ -68,12 +68,19 @@ void FSEGTIONcursesRenderer::objectsContextObjectAdded(shared_ptr<FSEGTObjectsCo
 		this->camera = object;
 
 	}
+
+	objectsMap->addOrUpdateObject(object);
+
 }
 
 void FSEGTIONcursesRenderer::objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object)
 {
+
+	objectsMap->addOrUpdateObject(object);
+
 }
 
 void FSEGTIONcursesRenderer::objectsContextAllObjectsRemoved(shared_ptr<FSEGTObjectsContext> context)
 {
+	objectsMap->removeAllObjects();
 }	
