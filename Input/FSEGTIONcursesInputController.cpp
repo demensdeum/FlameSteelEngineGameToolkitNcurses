@@ -2,6 +2,8 @@
 #include <ncurses.h>
 #include <iostream>
 
+static const int KEY_ESC = 2;
+
 FSEGTIONcursesInputController::FSEGTIONcursesInputController() {
 
 }
@@ -28,6 +30,10 @@ void FSEGTIONcursesInputController::pollKey() {
 
 		case KEY_DOWN:
 			downKeyPressed = true;
+			break;
+
+		case 'q':
+			exitKeyPressed = true;
 			break;
 
 		default:

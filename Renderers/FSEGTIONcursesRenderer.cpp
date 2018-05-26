@@ -15,12 +15,19 @@ void FSEGTIONcursesRenderer::initialize() {
 
 void FSEGTIONcursesRenderer::render(shared_ptr<FSEGTGameData> gameData) {
 
+
 	clear();
 
-	int cameraRendererWidth = 21;
+	int cameraRendererWidth = 41;
 	int cameraRendererHeight = 21;
 
 	auto gameMap = gameData->gameMap;
+
+	if (objectsMap.get() == nullptr) {
+
+		objectsMap = make_shared<ObjectsMap>(gameMap->width, gameMap->height);
+
+	}
 
 	if (camera.get() == nullptr)
 	{
@@ -32,10 +39,18 @@ void FSEGTIONcursesRenderer::render(shared_ptr<FSEGTGameData> gameData) {
 	auto cameraX = position->x - cameraRendererWidth / 2;
 	auto cameraY = position->z - cameraRendererHeight / 2;
 
-	for (auto y = cameraY; y < cameraY + cameraRendererWidth; y++)
+	for (auto y = cameraY; y < cameraY + cameraRendererHeight; y++)
 	{
-		for (auto x = cameraX; x < cameraX + cameraRendererHeight; x++)
+		for (auto x = cameraX; x < cameraX + cameraRendererWidth; x++)
 		{
+			auto object = objectsMap->objectAtXY(x, y);
+
+			if (object.get() != nullptr)
+			{
+				printw("^");
+				continue;
+			}
+
 			auto tile = gameMap->getTileIndexAtXY(x,y);
 
 			switch (tile) {
@@ -69,18 +84,21 @@ void FSEGTIONcursesRenderer::objectsContextObjectAdded(shared_ptr<FSEGTObjectsCo
 
 	}
 
-	objectsMap->addOrUpdateObject(object);
-
+	if (objectsMap.get() != nullptr) {
+		objectsMap->handleObject(object);
+	}
 }
 
 void FSEGTIONcursesRenderer::objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object)
 {
-
-	objectsMap->addOrUpdateObject(object);
-
+	if (objectsMap.get() != nullptr) {
+		objectsMap->handleObject(object);
+	}
 }
 
 void FSEGTIONcursesRenderer::objectsContextAllObjectsRemoved(shared_ptr<FSEGTObjectsContext> context)
 {
-	objectsMap->removeAllObjects();
+	if (objectsMap.get() != nullptr) {
+		objectsMap->removeAllObjects();
+	}
 }	
