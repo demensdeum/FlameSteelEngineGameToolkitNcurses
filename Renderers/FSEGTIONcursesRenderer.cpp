@@ -10,11 +10,11 @@ using namespace FlameSteelEngine::GameToolkit::Algorithms;
 
 FSEGTIONcursesRenderer::FSEGTIONcursesRenderer() {
 
-	objectsMap = make_shared<ObjectsMap>(FSEGTGameMapWidth, FSEGTGameMapHeight);
+	objectsMap = make_shared<ObjectsMap>();
 
 }
 
-char *FSEGTIONcursesRenderer::printSymbolFromObject(shared_ptr<FSCObject>object) {
+const char *FSEGTIONcursesRenderer::printSymbolFromObject(shared_ptr<FSCObject>object) {
 
 	auto instanceIdentifier = object->getInstanceIdentifier().get();
 
@@ -64,10 +64,11 @@ void FSEGTIONcursesRenderer::render(shared_ptr<FSEGTGameData> gameData) {
 	{
 		for (auto x = cameraX; x < cameraX + cameraRendererWidth; x++)
 		{
-			auto object = objectsMap->objectAtXY(x, y);
+			auto objects = objectsMap->objectsAtXY(x, y);
 
-			if (object.get() != nullptr)
+			if (objects.get() != nullptr && objects->size() > 0)
 			{
+				auto object = objects->objectAtIndex(0);
 				auto printSymbol = FSEGTIONcursesRenderer::printSymbolFromObject(object);
 
 				printw(printSymbol);
