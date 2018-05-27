@@ -6,7 +6,7 @@ void FSEGTIONcursesSystem::initialize(shared_ptr<FSEGTIOSystemParams> params) {
 
 	initscr();
 	keypad(stdscr, true);
-	printw("NCurses IO System initialized");
+	printw("NCurses IO System initialized\n");
 	refresh();
 
 	renderer = make_shared<FSEGTIONcursesRenderer>();

@@ -21,6 +21,8 @@ public:
  	virtual void objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object);
 	virtual void objectsContextAllObjectsRemoved(shared_ptr<FSEGTObjectsContext> context);	
 
+static char *printSymbolFromObject(shared_ptr<FSCObject>object);
+
 private:
 	shared_ptr<FSCObject> camera;
 	shared_ptr<ObjectsMap> objectsMap;

@@ -4,8 +4,34 @@
 #include <chrono>
 #include <FlameSteelEngineGameToolkit/Utils/FSEGTUtils.h>
 #include <iostream>
+#include <FlameSteelEngineGameToolkitAlgorithms/Const/Const.h>
+
+using namespace FlameSteelEngine::GameToolkit::Algorithms;
 
 FSEGTIONcursesRenderer::FSEGTIONcursesRenderer() {
+
+	objectsMap = make_shared<ObjectsMap>(FSEGTGameMapWidth, FSEGTGameMapHeight);
+
+}
+
+char *FSEGTIONcursesRenderer::printSymbolFromObject(shared_ptr<FSCObject>object) {
+
+	auto instanceIdentifier = object->getInstanceIdentifier().get();
+
+	if (instanceIdentifier->compare("camera") == 0)
+	{
+		return "C";
+	}
+	else if (instanceIdentifier->compare(ConstMapEntityStartPoint) == 0)
+	{
+		return "S";
+	}
+	else if (instanceIdentifier->compare(ConstMapEntityEndPoint) == 0)
+	{
+		return "E";
+	}
+
+	return "^";
 
 }
 
@@ -15,6 +41,7 @@ void FSEGTIONcursesRenderer::initialize() {
 
 void FSEGTIONcursesRenderer::render(shared_ptr<FSEGTGameData> gameData) {
 
+	//abort();
 
 	clear();
 
@@ -22,12 +49,6 @@ void FSEGTIONcursesRenderer::render(shared_ptr<FSEGTGameData> gameData) {
 	int cameraRendererHeight = 21;
 
 	auto gameMap = gameData->gameMap;
-
-	if (objectsMap.get() == nullptr) {
-
-		objectsMap = make_shared<ObjectsMap>(gameMap->width, gameMap->height);
-
-	}
 
 	if (camera.get() == nullptr)
 	{
@@ -47,7 +68,9 @@ void FSEGTIONcursesRenderer::render(shared_ptr<FSEGTGameData> gameData) {
 
 			if (object.get() != nullptr)
 			{
-				printw("^");
+				auto printSymbol = FSEGTIONcursesRenderer::printSymbolFromObject(object);
+
+				printw(printSymbol);
 				continue;
 			}
 
@@ -78,6 +101,8 @@ void FSEGTIONcursesRenderer::render(shared_ptr<FSEGTGameData> gameData) {
 
 void FSEGTIONcursesRenderer::objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object)
 {
+	cout << object->getInstanceIdentifier()->c_str() << endl;
+
 	if (object->getClassIdentifier()->compare("camera") == 0) {
 
 		this->camera = object;
