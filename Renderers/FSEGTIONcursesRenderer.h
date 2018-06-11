@@ -26,6 +26,7 @@ static const char *printSymbolFromObject(shared_ptr<FSCObject>object);
 private:
 	shared_ptr<FSCObject> camera;
 	shared_ptr<ObjectsMap> objectsMap;
+	shared_ptr<FSCObjects> userInterfaceObjects;
 	
 
 };

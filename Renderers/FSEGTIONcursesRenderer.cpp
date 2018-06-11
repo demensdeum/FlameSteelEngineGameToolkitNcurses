@@ -4,14 +4,16 @@
 #include <chrono>
 #include <FlameSteelEngineGameToolkit/Utils/FSEGTUtils.h>
 #include <iostream>
+#include <FlameSteelEngineGameToolkit/Const/FSEGTConst.h>
 #include <FlameSteelEngineGameToolkitAlgorithms/Const/Const.h>
+#include <FlameSteelCore/FSCObjects.h>
 
 using namespace FlameSteelEngine::GameToolkit::Algorithms;
 
 FSEGTIONcursesRenderer::FSEGTIONcursesRenderer() {
 
 	objectsMap = make_shared<ObjectsMap>();
-
+	userInterfaceObjects = make_shared<FSCObjects>();
 }
 
 const char *FSEGTIONcursesRenderer::printSymbolFromObject(shared_ptr<FSCObject>object) {
@@ -94,6 +96,14 @@ void FSEGTIONcursesRenderer::render(shared_ptr<FSEGTGameData> gameData) {
 		printw("\n");
 	}
 
+	for (auto i = 0; i < userInterfaceObjects->size(); i++)
+	{
+		auto object = userInterfaceObjects->objectAtIndex(i);
+		auto text = FSEGTUtils::getText(object);
+		printw("\n");
+		printw(text->c_str());
+	}
+
 	refresh();
 	std::this_thread::sleep_for(0.001s);
 }
@@ -105,6 +115,11 @@ void FSEGTIONcursesRenderer::objectsContextObjectAdded(shared_ptr<FSEGTObjectsCo
 	if (object->getClassIdentifier()->compare("camera") == 0) {
 
 		this->camera = object;
+
+	}
+	else if (object->getClassIdentifier()->compare(FSEGTConstObjectClassIdentifierOnScreenText) == 0) {
+
+		userInterfaceObjects->addObject(object);
 
 	}
 
