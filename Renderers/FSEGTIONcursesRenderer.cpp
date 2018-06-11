@@ -41,8 +41,6 @@ void FSEGTIONcursesRenderer::initialize() {
 
 void FSEGTIONcursesRenderer::render(shared_ptr<FSEGTGameData> gameData) {
 
-	//abort();
-
 	clear();
 
 	int cameraRendererWidth = 41;
