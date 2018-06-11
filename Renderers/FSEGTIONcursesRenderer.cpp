@@ -33,6 +33,13 @@ const char *FSEGTIONcursesRenderer::printSymbolFromObject(shared_ptr<FSCObject>o
 		return "E";
 	}
 
+	auto classIdentifier = object->getClassIdentifier();
+
+	if (classIdentifier->compare("DMConstClassIdentifierEnemy") == 0)
+	{
+		return "V";
+	}
+
 	return "^";
 
 }
