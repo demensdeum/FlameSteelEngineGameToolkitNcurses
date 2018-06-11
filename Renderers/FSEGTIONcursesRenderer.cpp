@@ -140,4 +140,7 @@ void FSEGTIONcursesRenderer::objectsContextAllObjectsRemoved(shared_ptr<FSEGTObj
 	if (objectsMap.get() != nullptr) {
 		objectsMap->removeAllObjects();
 	}
+	if (userInterfaceObjects.get() != nullptr) {
+		userInterfaceObjects->removeAllObjects();
+	}
 }	
