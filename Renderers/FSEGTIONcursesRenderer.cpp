@@ -103,12 +103,21 @@ void FSEGTIONcursesRenderer::render(shared_ptr<FSEGTGameData> gameData) {
 		printw("\n");
 	}
 
+	int rowsHeight = 0;
+	int columnsWidth = 0;
+
+	getmaxyx(stdscr, rowsHeight, columnsWidth);
+
 	for (auto i = 0; i < userInterfaceObjects->size(); i++)
 	{
 		auto object = userInterfaceObjects->objectAtIndex(i);
 		auto text = FSEGTUtils::getText(object);
-		printw("\n");
-		printw(text->c_str());
+
+		auto position = FSEGTUtils::getObjectRelativeScreenPosition(object);
+		auto screenColumn = position->x * columnsWidth;
+		auto screenRow = position->y * rowsHeight;
+
+		mvprintw(screenRow, screenColumn, text->c_str());
 	}
 
 	refresh();
