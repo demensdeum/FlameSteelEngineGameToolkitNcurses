@@ -7,6 +7,7 @@
 #include <FlameSteelEngineGameToolkit/Const/FSEGTConst.h>
 #include <FlameSteelEngineGameToolkitAlgorithms/Const/Const.h>
 #include <FlameSteelCore/FSCObjects.h>
+#include <FlameSteelEngineGameToolkit/Data/Components/Text/FSEGTText.h>
 
 using namespace FlameSteelEngine::GameToolkit::Algorithms;
 
@@ -111,7 +112,7 @@ void FSEGTIONcursesRenderer::render(shared_ptr<FSEGTGameData> gameData) {
 	for (auto i = 0; i < userInterfaceObjects->size(); i++)
 	{
 		auto object = userInterfaceObjects->objectAtIndex(i);
-		auto text = FSEGTUtils::getText(object);
+		auto text = FSEGTUtils::getText(object)->text;
 
 		auto position = FSEGTUtils::getObjectRelativeScreenPosition(object);
 		auto screenColumn = position->x * columnsWidth;
