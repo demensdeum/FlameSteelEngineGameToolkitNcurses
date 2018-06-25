@@ -33,6 +33,10 @@ const char *FSEGTIONcursesRenderer::printSymbolFromObject(shared_ptr<FSCObject>o
 	{
 		return "E";
 	}
+	else if (instanceIdentifier->compare("main character") == 0)
+	{
+		return "M";
+	}
 
 	auto classIdentifier = object->getClassIdentifier();
 
