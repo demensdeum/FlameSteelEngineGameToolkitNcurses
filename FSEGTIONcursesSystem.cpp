@@ -33,3 +33,9 @@ void FSEGTIONcursesSystem::objectsContextAllObjectsRemoved(shared_ptr<FSEGTObjec
     renderer->objectsContextAllObjectsRemoved(context);
 
 }
+
+void FSEGTIONcursesSystem::stop() {
+
+	endwin();
+
+}
