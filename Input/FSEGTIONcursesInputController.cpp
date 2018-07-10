@@ -32,6 +32,10 @@ void FSEGTIONcursesInputController::pollKey() {
 			downKeyPressed = true;
 			break;
 
+		case 'f':
+			shootKeyPressed = true;
+			break;
+
 		case 'q':
 			exitKeyPressed = true;
 			break;
