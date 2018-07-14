@@ -17,16 +17,16 @@ public:
 
 	virtual void render(shared_ptr<FSEGTGameData> gameData);
 
-	virtual void objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object);
- 	virtual void objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object);
+	virtual void objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object);
+ 	virtual void objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object);
 	virtual void objectsContextAllObjectsRemoved(shared_ptr<FSEGTObjectsContext> context);	
 
-static const char *printSymbolFromObject(shared_ptr<FSCObject>object);
+static const char *printSymbolFromObject(shared_ptr<Object>object);
 
 private:
-	shared_ptr<FSCObject> camera;
+	shared_ptr<Object> camera;
 	shared_ptr<ObjectsMap> objectsMap;
-	shared_ptr<FSCObjects> userInterfaceObjects;
+	shared_ptr<Objects> userInterfaceObjects;
 	
 
 };

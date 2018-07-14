@@ -6,7 +6,7 @@
 #include <iostream>
 #include <FlameSteelEngineGameToolkit/Const/FSEGTConst.h>
 #include <FlameSteelEngineGameToolkitAlgorithms/Const/Const.h>
-#include <FlameSteelCore/FSCObjects.h>
+#include <FlameSteelCore/Objects.h>
 #include <FlameSteelEngineGameToolkit/Data/Components/Text/FSEGTText.h>
 
 using namespace FlameSteelEngine::GameToolkit::Algorithms;
@@ -14,10 +14,10 @@ using namespace FlameSteelEngine::GameToolkit::Algorithms;
 FSEGTIONcursesRenderer::FSEGTIONcursesRenderer() {
 
 	objectsMap = make_shared<ObjectsMap>();
-	userInterfaceObjects = make_shared<FSCObjects>();
+	userInterfaceObjects = make_shared<Objects>();
 }
 
-const char *FSEGTIONcursesRenderer::printSymbolFromObject(shared_ptr<FSCObject>object) {
+const char *FSEGTIONcursesRenderer::printSymbolFromObject(shared_ptr<Object>object) {
 
 	auto instanceIdentifier = object->getInstanceIdentifier().get();
 
@@ -129,7 +129,7 @@ void FSEGTIONcursesRenderer::render(shared_ptr<FSEGTGameData> gameData) {
 	std::this_thread::sleep_for(0.001s);
 }
 
-void FSEGTIONcursesRenderer::objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object)
+void FSEGTIONcursesRenderer::objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object)
 {
 	cout << object->getInstanceIdentifier()->c_str() << endl;
 
@@ -149,7 +149,7 @@ void FSEGTIONcursesRenderer::objectsContextObjectAdded(shared_ptr<FSEGTObjectsCo
 	}
 }
 
-void FSEGTIONcursesRenderer::objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object)
+void FSEGTIONcursesRenderer::objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object)
 {
 	if (objectsMap.get() != nullptr) {
 		objectsMap->handleObject(object);

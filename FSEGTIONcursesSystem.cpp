@@ -16,13 +16,13 @@ void FSEGTIONcursesSystem::initialize(shared_ptr<FSEGTIOSystemParams> params) {
 
 }
     
-void FSEGTIONcursesSystem::objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object) {
+void FSEGTIONcursesSystem::objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object) {
 
     renderer->objectsContextObjectAdded(context, object);
 
 }
 
-void FSEGTIONcursesSystem::objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> context, shared_ptr<FSCObject> object) {
+void FSEGTIONcursesSystem::objectsContextObjectUpdate(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object) {
     
     renderer->objectsContextObjectUpdate(context, object);
     
