@@ -1,7 +1,5 @@
 #include "FSEGTIONcursesRenderer.h"
 #include <ncurses.h>
-#include <thread>
-#include <chrono>
 #include <FlameSteelEngineGameToolkit/Utils/FSEGTUtils.h>
 #include <iostream>
 #include <FlameSteelEngineGameToolkit/Const/FSEGTConst.h>
@@ -126,7 +124,6 @@ void FSEGTIONcursesRenderer::render(shared_ptr<FSEGTGameData> gameData) {
 	}
 
 	refresh();
-	std::this_thread::sleep_for(0.001s);
 }
 
 void FSEGTIONcursesRenderer::objectsContextObjectAdded(shared_ptr<FSEGTObjectsContext> context, shared_ptr<Object> object)
